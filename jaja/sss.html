@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Hover Example</title>
+  <style>
+    /* Style de base */
+    #image {
+      width: 300px;
+      height: 200px;
+      border: 1px solid #ccc;
+      text-align: center;
+      line-height: 200px;
+      font-size: 18px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 20px;
+    }
+
+    .previewPic {
+      width: 100px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="image">Survolez une image ci-dessous pour lafficher ici.</div>
+  
+  <div>
+    <img class="previewPic" src="444.png" alt="Description de l'image 1">
+    <img class="previewPic" src="333.png" alt="Description de l'image 2">
+    <img class="previewPic" src="222.png" alt="Description de l'image 3">
+  </div>
+
+  <script>
+    // Fonction pour mettre à jour l'affichage
+    function upDate(previewPic) {
+      console.log("Événement déclenché :", previewPic);
+
+      let imageDiv = document.getElementById("image");
+      imageDiv.style.backgroundImage = `url(${previewPic.src})`;
+      imageDiv.textContent = previewPic.alt;
+    }
+
+    // Fonction pour réinitialiser l'affichage
+    function undo() {
+      let imageDiv = document.getElementById("image");
+      imageDiv.style.backgroundImage = "url('')";
+      imageDiv.textContent = "Survolez une image ci-dessous pour lafficher ici.";
+    }
+
+    // Ajouter des écouteurs d'événements
+    document.querySelectorAll(".previewPic").forEach((img) => {
+      img.addEventListener("mouseover", function () {
+        upDate(this);
+      });
+      img.addEventListener("mouseout", undo);
+    });
+  </script>
+</body>
+</html>
